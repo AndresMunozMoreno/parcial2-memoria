@@ -1,0 +1,25 @@
+# Entornos virtuales
+.venv/
+venv/
+env/
+
+# Cache de Python
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+
+# Archivos de configuración de VS Code (opcional, si no quieres compartir tu config local)
+.vscode/*
+!.vscode/settings.json
+
+# Archivos de sistema
+.DS_Store
+
+# Docker
+*.log
+
+# Distribución / build
+*.egg-info/
+dist/
+build/
