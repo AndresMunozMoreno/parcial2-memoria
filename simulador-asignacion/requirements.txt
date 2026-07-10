@@ -1,0 +1,2 @@
+# Sin dependencias externas por ahora.
+# Si se agregan librerías (ej: tabulate para tablas en consola), listarlas aquí.
