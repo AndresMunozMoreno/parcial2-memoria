@@ -1,8 +1,15 @@
 """
-Módulo que define la clase Proceso.
+==============================================================
+Proyecto: Simulador de Administración de Memoria
+Autor: Andrés Felipe Muñoz Moreno
+Asignatura: Sistemas Operativos - Universidad del Valle
+Archivo: proceso.py
 
-Representa un proceso que solicita memoria dentro del simulador de
-asignación (First Fit, Best Fit, Worst Fit).
+Descripción:
+Define la clase Proceso, que representa un proceso que solicita
+un bloque de memoria dentro del simulador de asignación (First Fit,
+Best Fit, Worst Fit).
+==============================================================
 """
 
 from __future__ import annotations

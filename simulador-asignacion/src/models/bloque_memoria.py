@@ -1,9 +1,18 @@
 """
-Módulo que define la clase BloqueMemoria.
+==============================================================
+Proyecto: Simulador de Administración de Memoria
+Autor: Andrés Felipe Muñoz Moreno
+Asignatura: Sistemas Operativos - Universidad del Valle
+Archivo: gestor_memoria.py
 
-Representa un bloque contiguo de memoria dentro del simulador de
-asignación (First Fit, Best Fit, Worst Fit). La memoria total del
-sistema se modela como una lista de objetos BloqueMemoria.
+Descripción:
+Define la clase GestorMemoria, componente central del simulador.
+Mantiene la lista de bloques que representan la memoria total del
+sistema y coordina la creación y liberación de procesos sobre esos
+bloques. Los algoritmos de asignación (First/Best/Worst Fit) reciben
+la lista de bloques libres desde aquí y deciden cuál usar; GestorMemoria
+no decide la estrategia, solo aplica la decisión que le indiquen.
+==============================================================
 """
 
 from __future__ import annotations
