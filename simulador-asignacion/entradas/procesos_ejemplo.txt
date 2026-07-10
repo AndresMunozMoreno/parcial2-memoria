@@ -1,0 +1,7 @@
+# Archivo de entrada de ejemplo para el simulador de asignación de memoria
+# Formato: id_proceso,tamano_en_KB
+P1,50
+P2,30
+P3,100
+P4,20
+P5,75
