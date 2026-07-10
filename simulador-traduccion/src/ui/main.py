@@ -11,8 +11,8 @@ Virtuales a Físicas (paginación de un nivel). Presenta un menú
 interactivo por consola que permite configurar la memoria física
 y el tamaño de página, cargar procesos desde un archivo de
 entrada, crear/liberar procesos manualmente, traducir direcciones
-virtuales y visualizar el estado de los marcos y de las tablas
-de páginas.
+virtuales, visualizar el espacio de memoria virtual de un proceso,
+y ver el estado de los marcos y de las tablas de páginas.
 ==============================================================
 """
 
@@ -40,7 +40,8 @@ def mostrar_menu_principal() -> None:
     print("5. Traducir una dirección virtual")
     print("6. Ver estado de los marcos")
     print("7. Ver tabla de páginas de un proceso")
-    print("8. Salir")
+    print("8. Ver espacio de memoria virtual de un proceso")
+    print("9. Salir")
     print("=" * 55)
 
 
@@ -173,6 +174,28 @@ def mostrar_tabla_paginas(gestor: GestorMemoriaVirtual) -> None:
     print(gestor.tablas_paginas[id_proceso])
 
 
+def mostrar_espacio_virtual(gestor: GestorMemoriaVirtual) -> None:
+    """
+    Muestra el espacio de memoria virtual de un proceso: el tamaño
+    solicitado, la memoria reservada, y el rango de direcciones
+    virtuales que ocupa cada una de sus páginas.
+    """
+    id_proceso = input("Id del proceso: ").strip()
+
+    if id_proceso not in gestor.procesos:
+        print(f"No existe un proceso activo con id '{id_proceso}'.")
+        return
+
+    proceso = gestor.procesos[id_proceso]
+    print(f"\nProceso {proceso.id} - Espacio de memoria virtual:")
+    print(
+        f"  Tamaño solicitado: {proceso.tamano}KB | "
+        f"Memoria reservada: {proceso.memoria_reservada()}KB"
+    )
+    for numero_pagina, inicio, fin in proceso.espacio_virtual():
+        print(f"  Página {numero_pagina} -> direcciones virtuales [{inicio}-{fin}]")
+
+
 def main() -> None:
     """Bucle principal del programa: muestra el menú hasta que el usuario salga."""
     print("Bienvenido al Simulador de Traducción de Direcciones (Paginación).")
@@ -222,6 +245,12 @@ def main() -> None:
                 mostrar_tabla_paginas(gestor)
 
         elif opcion == "8":
+            if gestor is None:
+                print("Primero debe configurar la memoria (opción 1).")
+            else:
+                mostrar_espacio_virtual(gestor)
+
+        elif opcion == "9":
             print("Saliendo del simulador. ¡Hasta luego!")
             break
 

@@ -15,7 +15,7 @@ tamaño solicitado y el tamaño de página configurado.
 """
 
 from __future__ import annotations
-from typing import List
+from typing import List, Tuple
 import math
 
 from models.pagina import Pagina
@@ -81,6 +81,21 @@ class ProcesoPaginado:
     def todas_las_paginas_cargadas(self) -> bool:
         """Retorna True si todas las páginas del proceso tienen un marco asignado."""
         return all(pagina.esta_cargada() for pagina in self.paginas)
+
+    def espacio_virtual(self) -> List[Tuple[int, int, int]]:
+        """
+        Retorna el espacio de memoria virtual del proceso, representado
+        como una lista de tuplas (numero_pagina, direccion_inicio,
+        direccion_fin), una por cada página. Esto representa
+        explícitamente el espacio de direcciones virtuales del proceso,
+        independientemente de si ya tiene marcos físicos asignados.
+        """
+        rangos = []
+        for pagina in self.paginas:
+            inicio = pagina.numero_pagina * self.tamano_pagina
+            fin = inicio + self.tamano_pagina - 1
+            rangos.append((pagina.numero_pagina, inicio, fin))
+        return rangos
 
     def __repr__(self) -> str:
         return (
