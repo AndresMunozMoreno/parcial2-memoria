@@ -1,0 +1,17 @@
+# Archivo diseñado para demostrar fragmentación externa.
+# Uso recomendado:
+#   1. Configurar memoria total en 300KB (opción 1 del menú).
+#   2. Cargar este archivo (opción 3, cargar desde archivo).
+#      Esto deja: P1(100KB) + P2(50KB) + P3(100KB) = 250KB ocupados,
+#      y 50KB libres al final.
+#   3. Liberar P2 (opción 5, liberar proceso).
+#      Ahora hay DOS bloques libres no contiguos: 50KB (donde estaba P2)
+#      y 50KB (al final) = 100KB libres en total.
+#   4. Intentar crear un proceso nuevo P4 de 80KB (opción 4).
+#      Aunque hay 100KB libres en total, NINGÚN bloque individual
+#      alcanza los 80KB solicitados -> la asignación es rechazada.
+#      Esto es fragmentación externa: memoria libre suficiente en
+#      conjunto, pero inutilizable porque está dividida.
+P1,100
+P2,50
+P3,100

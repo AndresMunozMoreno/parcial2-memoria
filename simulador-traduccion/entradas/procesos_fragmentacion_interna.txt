@@ -1,0 +1,19 @@
+# Archivo diseñado para demostrar fragmentación interna en distintos
+# grados, usando el tamaño de página por defecto (16KB).
+# Uso recomendado:
+#   1. Configurar memoria física en 256KB y tamaño de página en 16KB
+#      (o usar los valores por defecto: 64KB / 16KB, ajustando el
+#      tamaño de memoria si se necesita espacio para los 3 procesos).
+#   2. Cargar este archivo (opción 2 del menú).
+#
+# Casos incluidos:
+#   P1,17  -> ceil(17/16)=2 paginas -> reservado=32KB -> frag. interna=15KB
+#             (peor caso posible: casi una página completa desperdiciada)
+#   P2,33  -> ceil(33/16)=3 paginas -> reservado=48KB -> frag. interna=15KB
+#             (mismo peor caso, pero con más páginas en uso)
+#   P3,64  -> ceil(64/16)=4 paginas -> reservado=64KB -> frag. interna=0KB
+#             (mejor caso: múltiplo exacto del tamaño de página, sin
+#             fragmentación interna)
+P1,17
+P2,33
+P3,64
